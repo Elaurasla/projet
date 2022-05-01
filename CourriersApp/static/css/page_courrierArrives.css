@@ -1,0 +1,26 @@
+body
+{
+    background-color: rgb(218, 176, 136); 
+}
+
+h1 a, h2 a {
+    color: rgb(128, 105, 0);
+}
+
+#searchbar{
+    margin-left: 15%;
+    padding:15px;
+    border-radius: 10px;
+  }
+
+  input[type=text] {
+     width: 30%;
+     -webkit-transition: width 0.15s ease-in-out;
+     transition: width 0.15s ease-in-out;
+  }
+
+  /* When the input field gets focus,
+       change its width to 100% */
+  input[type=text]:focus {
+    width: 70%;
+  }

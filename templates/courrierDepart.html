@@ -1,0 +1,41 @@
+{% load static %}
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Courrier Depart</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/page_courrierDepart.css' %}">
+    </head>
+    <body>
+        <ul style="list-style: none">
+            <li style="display: inline-block; padding: 10px 20px;">
+                <h1><a href="/">Accueil</a></h1>
+            </li>
+            <li style="display: inline-block; padding: 10px 20px;">
+            <a href="/courrierA/">CourrierArrives</a>
+
+            </li>
+            <li style="display: inline-block; padding: 10px 20px;">
+            <a href="/courrierD/">CourriersDéparts</a>
+            </li>
+        </ul>
+
+        <h1>Les courriers depart</h1>
+        <ul>
+            <li>Courrier1</li>
+            <li>Courrier2</li>
+        </ul>
+
+        <div id="searchbar">
+                
+            <h1>Rechercher</h1>
+    <form action="" class="formulaire">
+   <input class="champ" type="text" value="Search...)"/>
+        <input class="bouton" type="button" value=" " />
+         
+    </form>
+    </div>
+
+    </body>
+</html>

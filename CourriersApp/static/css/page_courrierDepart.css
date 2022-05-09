@@ -8,8 +8,17 @@ h1 a, h2 a {
     color: rgb(255, 217, 0);
 }
 
+
+
 h1 {
-  font-style: normal; font-weight: 700; font-family: 'Didot', serif;
+  font-style: normal; 
+  font-weight: 700; 
+  font-family: 'Didot', serif;
+  text-align: center;
+  padding: 10px 50px 10px 0px; 
+  background-color: rgb(233, 217, 198);
+  
+
 }
 
 

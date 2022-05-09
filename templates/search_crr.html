@@ -1,0 +1,9 @@
+{% block title %}Search results {% endblock title %}
+{% block body %}
+    <h3 class="text_center">Results: </h3>
+
+    {% for courrier in courriers %}
+     {{courrier}}
+    {% endfor %}
+
+    {% endblock body %}

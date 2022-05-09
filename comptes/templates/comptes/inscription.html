@@ -1,21 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+    <meta charset="utf-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="{% static 'css/inscription_page.css' %}">
+    </head>
+    <body>
+        
+<div class="center">
+    <h1>Connexion</h1>
 
-
-<h1> S'inscrire </h1>
-<form method="POST">
+<p>{{ message }}</p>
+<form method="post">
+    {{ form.as_p }}
     {% csrf_token %}
-    <p>
-        <label for="username">Nom d'utilisateur</label>
-        <input id="username" type="text" name="username">
-
-    </p>
-    <p>
-        <label for="password">Mot de passe </label>
-        <input id="password" type="password" name="password">
-
-    </p>
-    <button type="submit">S'inscrire</button>
-
+    <button type="submit" >Se connecter</button>
 </form>
+    <p>Nouvel utilisateur: <a href="{% url 'inscriptionn' %}">Inscription</a></p>
+</div>
 
-
-
+</body>
+</html>

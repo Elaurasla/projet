@@ -1,0 +1,8 @@
+{% block content %}
+    <h2>Enregistrer un courrier</h2>
+    <form method="post" >
+        {{ courrier_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Enregistrer</button>
+    </form>
+{% endblock content %}

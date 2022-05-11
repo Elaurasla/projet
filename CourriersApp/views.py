@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .formulaire import CourrierForm
+from .formulaire import CourrierDepartForm
 from .models.my_model import Courrier
 
 from django.conf import settings
@@ -40,6 +41,9 @@ def crr(request):
 def view(request):
     courriers = Courrier.objects.all()
     return render(request, "view.html", {'courriers':courriers})
+
+    #myFilter = CourrierFilter()
+    #context = {'myFilter':myFilter}
 
 def delete(request, id):
     courriers= Courrier.objects.get(id=id)
@@ -97,3 +101,16 @@ def search_posts(request):
         'courriers':courriers
     }
     return render(request, 'search_crr.html', {'search': search})
+
+
+
+def courrierd_list(request):
+    return render(request, 'courrierd_list.html')
+
+def courrierd_form(request):
+    form = CourrierDepartForm()
+    return render(request, 'courrierd_form.html',{'form':form})
+
+def courrierd_delete(request):
+    return
+

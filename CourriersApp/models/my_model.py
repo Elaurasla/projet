@@ -1,11 +1,10 @@
 from django.forms import ModelForm, Textarea
 from django.db import models
 from django import forms
-from django.forms.fields import DateField , ChoiceField ,MultipleChoiceField
-from django.forms.widgets import RadioSelect ,CheckboxSelectMultiple
+from django.views.generic.list import ListView
 
 # Create your models here.
-BUREAU = models.CharField(('FI','FINANCES'),('PE','PESE'),('CO','CONTENTIEUX'),('BR','BRH'))
+
 
 
 class Courrier(models.Model):
@@ -19,6 +18,35 @@ class Courrier(models.Model):
 
 class Meta:
     db_table = "courriers"
+
+
+class Bureau(models.Model):
+    title = models.CharField(max_length=50)
+
+class CourrierDepart(models.Model):
+    num = models.PositiveIntegerField()
+    date = models.DateField()
+    date_emission = models.DateField()
+    reference = models.TextField(blank = True)
+    origine = models.CharField(max_length=100)
+    objet = models.TextField(blank = True)
+    bureau = models.ForeignKey(Bureau,on_delete= models.CASCADE)
+
+ 
+class SearchView(ListView):
+    model = Courrier
+    template_name = 'search_crr.html'
+    context_object_name = 'all_search_results'
+
+    def get_queryset(self):
+        result = super(SearchView, self).get_queryset()
+        query = self.request.GET.get('search')
+        if query:
+            postresult = Courrier.objects.filter(objet__contains=query)
+        else:
+            result = None
+
+        return result
 
     #bureau=models.ChoiceField(max_length=1, choices = BUREAU)
 

@@ -8,9 +8,9 @@ from . import forms
 #User= get_user_model()
 def logout_user(request):
     logout(request)
-    return redirect('signup')
-
-def signup_page(request):
+    return redirect('connexion')
+  
+def inscription(request):
     form = forms.SignupForm()
     if request.method == 'POST':
         form = forms.SignupForm(request.POST)
@@ -19,15 +19,15 @@ def signup_page(request):
             # auto-login user
             login(request, user)
             return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request, 'comptes/signup.html', context={'form': form})
+    return render(request, 'comptes/inscription.html', context={'form': form})
 
 
-def signup(request):
+def connexion(request):
     form = forms.LoginForm()
     message = ''
     if request.method == 'POST':
         form = forms.LoginForm(request.POST)
-        if form.is_valid():
+        if form.is_valid(): 
             user = authenticate(
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password'],
@@ -36,20 +36,7 @@ def signup(request):
                 login(request, user)
                 return redirect('home')
         message = 'Identifiants invalides.'
-    return render(request, 'comptes/inscription.html', context={'form': form, 'message': message})
+    return render(request, 'comptes/connexion.html', context={'form': form, 'message': message})
 
 
- 
-"""def signup(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        user = User.objects.create_user(username=username, password=password)
-        
-        login(request, user)
-        return redirect('home')
 
-    return render(request, 'comptes/inscription.html')"""
-
-
-# authentication/views.py

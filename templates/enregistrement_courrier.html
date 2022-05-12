@@ -4,71 +4,60 @@
     <meta charset="UTF-8">
     <title>Index</title>
     {% load static %}
-   <!-- <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>-->
+    <!--<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>-->
 </head>
 <body>
-<form method="POST" class="post-form" action="/view/">
-    <input type="hidden" name="id" id="id" required maxlenght="20" value="{{ courriers.id }}"/>
+    
+    <li style="display: inline-block; padding: 10px 20px;">
+        <a href="/view/">Voir courriers enregistrés</a>
+        </li>
+<form method="POST" class="post-form" action="/crr/">
         {% csrf_token %}
     <div class="container">
 <br>
     <div class="form-group row">
-    <label class="col-sm-1 col-form-label"></label>
+    <label class="col-sm-1 col-form-label"></label> 
     <div class="col-sm-4">
-    <h3>Enter Details</h3>
+    <h3>Enregistrement courrier Arrivé</h3> 
     </div>
   </div>
   <div class="form-group row">
   <label class="col-sm-2 col-form-label">Numéro:</label>
   <div class="col-sm-4">
-    <input type="text" name="num" value="{{courriers.num}}">
       {{ form.num }}
 
    <div class="form-group row">
    <label class="col-sm-2 col-form-label">Date:</label>
    <div class="col-sm-4">
-   <input type="text" name="date" value="{{courriers.date}}">
-
     {{ form.date }}
 
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Date d'émission:</label>
     <div class="col-sm-4">
-    <input type="text" name="date_emission" value="{{courriers.date_emission}}">
-
     {{ form.date_emission }}
 
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Référence:</label>
     <div class="col-sm-4">
-    <input type="text" name="reference" value="{{courriers.reference}}">
-
-    {{ form.reference }}
+    {{ form.reference }} 
 
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Origine:</label>
         <div class="col-sm-4">
-    <input type="text" name="origine" value="{{courriers.origine}}">
-
          {{ form.origine }}
 
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Objet:</label>
     <div class="col-sm-4">
-    <input type="text" name="objet" value="{{courriers.objet}}">
-
          {{ form.objet }}
 
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Bureau:</label>
      <div class="col-sm-4">
-    <input type="text" name="bureau" value="{{courriers.bureau}}">
-
         {{ form.bureau }}
 
   </div>
-  </div>
-  
+  </div> 
   <div class="form-group row">
   <label class="col-sm-1 col-form-label"></label>
   <div class="col-sm-4">
@@ -77,6 +66,8 @@
   </div>
   </div>
     </form>  
+    
+
 </body>
 
 </html>

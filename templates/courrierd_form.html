@@ -1,7 +1,14 @@
 {% extends "courrierDepart.html" %}
 
 {% block content %}
-{{form}}
+
+<form method="POST" class="post-form" >
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="save btn">Enregistrer</button>
+    
+    </form>
 {% endblock content %}
 
 
+ 

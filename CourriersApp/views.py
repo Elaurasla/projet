@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from .formulaire import CourrierForm
 from .formulaire import CourrierDepartForm
+
 from .models.my_model import Courrier
+from .models.my_model import CourrierDepart
+from .models.my_model import CourrierFilter
 
 from django.conf import settings
 from django.contrib.auth import login, authenticate, logout
@@ -11,7 +14,6 @@ from CourriersApp import models
 from django.http import HttpResponse
 from django.template import loader
 
-from .filters import CourrierFilter
 
 
 
@@ -31,19 +33,17 @@ def crr(request):
         if form.is_valid():
             try:
                 form.save()
-                return redirect ('/view')
-            except: 
+                return redirect ('/crr')
+            except:  
                 pass
-    else:
+    else: 
         form = CourrierForm()
-    return render(request, 'index_test.html', {'form': form})
+    return render(request, 'enregistrement_courrier.html', {'form': form})
 
 def view(request):
     courriers = Courrier.objects.all()
     return render(request, "view.html", {'courriers':courriers})
 
-    #myFilter = CourrierFilter()
-    #context = {'myFilter':myFilter}
 
 def delete(request, id):
     courriers= Courrier.objects.get(id=id)
@@ -62,35 +62,42 @@ def update(request,id):
     context = {'form': form}
     return render(request, 'index_test.html', context)
 
-"""def edit(request, id):
-    courriers = Courrier.objects.get(id=id)
-    return render(request, "edit.html", {'courriers':courriers})"""
 
 
-"""
-def courrier_filtre(request,id):
-    courrier= Courrier.objects.get(id=id)
-    ordre = courrier.order_set.all()
-    ordre_count = ordre.count()
-    myFilter = OrderFilter()
-    context = {'courier': courrier, 'ordre': ordre, 'ordre_count': ordre_count, 'myFilter': myFilter}
-    return render(request, 'view.html', context)
+def crr_depart(request):
+    if request.method == "POST":
+        form = CourrierDepartForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect ('/courrierd')
+            except:  
+                pass
+    else: 
+        form = CourrierDepartForm()
+    return render(request, 'courrierd_form.html', {'form': form})
 
 
+def view_depart(request):
+    courriersdepart = CourrierDepart.objects.all()
+    return render(request, "courrierd_form.html", {'courriersdepart':courriersdepart})
 
-@login_required
-def courrier_list(request, *args, **kwargs):
-    courriers = Courrier.objects.all()
-    if request.method == "GET":
-        name = request.GET.get('recherche')
-        if name is not None:
-            courriers = Courrier.objects.filter(name__icontains=objet)
+def delete_depart(request, id):
+    courriersdepart= CourrierDepart.objects.get(id=id)
+    courriersdepart.delete()
+    return redirect("/courrierd")
 
-    context = {
-        'courriers':courriers,
-    } 
+def update_depart(request,id):
+    courrierdepart= CourrierDepart.objects.get(id=id)
+    form = CourrierDepartForm(instance = courrier)
+    if request.method == "POST":
+        form = CourrierDepartForm(request_POST, instance= courrierdepart)
+        if form.is_valid():
+            form.save()
+            return redirect('/courrierd')
+    context = {'form': form}
+    return render(request, 'courrierd_form.html', context)
 
-    return render(request, 'view.html', context)"""
 
 @login_required
 def search_posts(request):
@@ -102,10 +109,6 @@ def search_posts(request):
     }
     return render(request, 'search_crr.html', {'search': search})
 
-
-
-def courrierd_list(request):
-    return render(request, 'courrierd_list.html')
 
 def courrierd_form(request):
     form = CourrierDepartForm()

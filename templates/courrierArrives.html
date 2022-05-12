@@ -17,23 +17,12 @@
             <a href="/courrierd_form/">Courrier Départ</a>
             </li>
         </ul>
-
+ 
       
         <h1>Courrier arrivé</h1>
 
 
         <div id="searchbar">
-    
-
-       <!--<a>Rechercher</a>
-        <form action="" class="formulaire">
-        <input class="champ" type="text" value="Search...)"/>
-        <input class="bouton" type="button" value=" " />--> 
-
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" name= "recherche" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
 
         <br>
 
@@ -47,7 +36,7 @@
         <a href="{% url 'crr' %}">Enregistrer un courrier test 2</a>
         {% endif %}
  
-        <br>
+        <br> 
 
         {% if user.is_authenticated %}
         <a href="{% url 'vue' %}">voir les courriers </a>

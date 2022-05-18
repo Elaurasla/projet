@@ -21,12 +21,13 @@ from CourriersApp.views import delete_depart
 from CourriersApp.views import update_depart
 
 
-from CourriersApp.views import courrierd_delete 
-from CourriersApp.views import courrierd_form  
-  
+#from CourriersApp.views import courrierd_delete 
+#from CourriersApp.views import courrierd_form  
+#from CourriersApp.views import showlist  
+
 
 from CourriersApp.models.my_model import SearchView
-
+from CourriersApp.models.my_model import SearchView_objet
 from django.urls import reverse_lazy
 
 from . import views
@@ -53,7 +54,12 @@ urlpatterns = [
     path('updated/<str:id>', update_depart, name='modifierd'),
 
     path('results/', SearchView.as_view(), name='search'),
-    path('courrierd_form/',courrierd_form, name="courrierd"),
+    path('results_objet/', SearchView_objet.as_view(), name='search_objet'),
+
+
+    #path('courrierd_form/',courrierd_form, name="courrierd"),
+
+    #path('showlist/', showlist, name= 'showlist'),
 
 
 ]

@@ -86,7 +86,7 @@ form .label{
     pointer-events: none;
 }
 
-.txt_field span::before{
+.txt_field span::before{ 
     content: '';
     position: absolute;
     top: 40px;

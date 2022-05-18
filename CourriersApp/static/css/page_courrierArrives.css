@@ -1,40 +1,95 @@
 body
 {
-    background-color: rgb(218, 176, 136); 
+    background-color: rgb(167, 103, 44); 
 }
 
-h1 a, h2 a { 
-    color: rgb(128, 105, 0);
+nav ul{
+     display: flex;
+     justify-content: flex-end;
+     flex: 1;
+     padding-right: 40px;
+     text-align: right;
+     list-style-type: none;
+   }
+
+ul li{
+  margin-right: 10px;
 }
 
-h1 {
-  font-style: normal; 
-  font-weight: 700; 
-  font-family: 'Didot', serif;
-  text-align: center;
-  padding: 10px 50px 10px 0px; 
-  background-color: rgb(233, 217, 198);
+ul li a {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.site-container .row{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+
+} 
+
+.row a{
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
+  text-decoration: none;
+  background-color: rgb(230, 187, 132);
+  color: white;
+  border: 1px solid white;
+  width: auto;
+  margin-right: 600px; 
+  margin-left: 550px; 
+  font-size: 20px;
+  transition: 0.3s;
+
+}
+
+.row a:hover{
+  background-color: white;
+  color: #000;
+}
+
+.site-container h1{
+  font-size: 80px;
+  line-height: 120px;
+  margin-left: -10px;
   
 
 }
 
-#searchbar{
-    margin-left: 15%;
-    padding:15px;
-    border-radius: 10px;
-  }
+.site-container .row{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
 
-  input[type=text] {
-     width: 30%;
-     -webkit-transition: width 0.15s ease-in-out;
-     transition: width 0.15s ease-in-out;
-  }
+}
 
-  /* When the input field gets focus,
-       change its width to 100% */
-  input[type=text]:focus {
-    width: 70%;
-  }
+.row a{
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  text-decoration: none;
+  color:white;
+  border: 1px solid white;
+  margin-right: 40px;
+  font-size: 18px;
+  position:relative;
 
+}
 
-  
+.row a span{
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 2;
+
+}
+
+.row span {
+  font-size: 18px;
+
+}
+

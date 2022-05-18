@@ -140,4 +140,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = "comptes.Shopper"
 LOGIN_REDIRECT_URL = 'connexion'
-LOGIN_URL = 'inscription'
+LOGIN_URL = 'connexion'

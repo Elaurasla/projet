@@ -3,10 +3,9 @@ from django.db import models
 from django import forms
 import django_filters
 from django.views.generic.list import ListView
+from django.db.models import Q
 #from CourriersApp.filters import CourrierFilter
 # Create your models here.
-
-
 
 class Courrier(models.Model):
     num = models.PositiveIntegerField()
@@ -15,14 +14,9 @@ class Courrier(models.Model):
     reference = models.TextField(blank = True)
     origine = models.CharField(max_length=100)
     objet = models.TextField(blank = True)
-    bureau = models.CharField(max_length=100)
-
-class Meta:
-    db_table = "courriers"
-
-
-"""class Bureau(models.Model):
-    title = models.CharField(max_length=50)"""
+    bureau = models.TextField(max_length=100)
+    class Meta:
+        db_table = "courriers"
 
 class CourrierDepart(models.Model):
     num = models.PositiveIntegerField()
@@ -31,17 +25,15 @@ class CourrierDepart(models.Model):
     reference = models.TextField(blank = True)
     origine = models.CharField(max_length=100)
     objet = models.TextField(blank = True)
-    bureau = models.CharField(max_length=100)
-
-    #bureau = models.ForeignKey(Bureau,on_delete= models.CASCADE)
-
+    bureau = models.TextField(max_length=100)
     class Meta:
-        db_table= "courriersapp_courrierdepart"
+        db_table = "courriersdepart"
 
 class CourrierFilter(django_filters.FilterSet):
     class Meta:
         model = Courrier
         fields = '__all__'
+
 
 class SearchView(ListView):
     model = Courrier
@@ -52,18 +44,47 @@ class SearchView(ListView):
         result = super(SearchView, self).get_queryset()
         query = self.request.GET.get('search')
         if query:
-            postresult = Courrier.objects.filter(objet__contains=query)
-            result= postresult
+            postresult = Courrier.objects.filter(origine__iexact=query)
+            result = postresult
         else:
             result = None
+        return result
+
+  
+
+class SearchView_objet(ListView):
+    model = Courrier
+    template_name = 'search_objet.html'
+    context_object_name = 'all_search_results'
+
+    def get_queryset(self):
+        result = super(SearchView_objet, self).get_queryset()
+        query = self.request.GET.get('search_objet')
+        if query:
+            postresult = Courrier.objects.filter(objet__iexact=query) 
+            result = postresult
+        else:
+            result = None 
         return result
 
 
 
 
-    #bureau=models.ChoiceField(max_length=1, choices = BUREAU)
+"""
+class SearchView(ListView):
+    model = Courrier
+    template_name = 'search_crr.html'
+    context_object_name = 'all_search_results'
 
-   #def __str__(self):
-        #return self.reference
+    def get_queryset(self):
+        result = super(SearchView, self).get_queryset()
+        query = self.request.GET.get('search')
+        if query:
+            postresult = Courrier.objects.filter(objet__iexact=query)
+            result= postresult
+        else:
+            result = None
+        return result"""
 
 
+#postresult = Courrier.objects.filter(Q(objet__iexact=query) & Q(origine__iexact=query))
